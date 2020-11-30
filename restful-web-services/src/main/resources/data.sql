@@ -75,24 +75,3 @@ values(
 		1, 
 		38.95, 
 		'EUR');
-
-		
-						
-insert into Price 
-	( brand_id,
-	  start_date,
-	  end_date,
-	  price_list,
-	  product_id,
-	  priority,
-	  price,
-	  curr)
-values(
-				1, 
-		parsedatetime('20200615160000', 'yyyyMMddHHmmss'), 
-		parsedatetime('20201231235959', 'yyyyMMddHHmmss'),  
-		4, 
-		35455, 
-		1, 
-		38.95, 
-		'EUR');

@@ -1,4 +1,4 @@
-package com.inditex.rest.webservices.restfulwebservices.pricemanagement;
+package com.inditex.rest.webservices.restfulwebservices.pricequery;
 
 import java.sql.Date;
 import java.sql.Timestamp;

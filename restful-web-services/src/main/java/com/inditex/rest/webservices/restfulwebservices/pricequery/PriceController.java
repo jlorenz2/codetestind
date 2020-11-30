@@ -1,5 +1,8 @@
-package com.inditex.rest.webservices.restfulwebservices.pricemanagement;
+package com.inditex.rest.webservices.restfulwebservices.pricequery;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +30,15 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 public class PriceController {
+	
+	public static boolean isNumeric(String str) { 
+		  try {  
+		    Double.parseDouble(str);  
+		    return true;
+		  } catch(NumberFormatException e){  
+		    return false;  
+		  }  
+		}
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -39,7 +51,16 @@ public class PriceController {
 	
 	
 	@GetMapping("/price")
-	public Map<String, String> price(Model model, @RequestParam("datetime") String dateTime, @RequestParam("productid") int productId, @RequestParam("brandid") int brandId) {
+	public Map<String, String> price(@RequestParam("datetime") String dateTime, @RequestParam("productid") int productId, @RequestParam("brandid") int brandId) {
+		
+	    DateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+	    sdf.setLenient(false);
+	    try {
+	        sdf.parse(dateTime);
+	    } catch (ParseException e) {
+	    	throw new InvalidDataException("datetime: Invalid Date format. Valid format: YYYYMMDDHHMMSS");
+	    }
+
 		
 		var prices = (List<Object[]>) priceService.getPrice(dateTime, productId, brandId);
 		
