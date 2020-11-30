@@ -37,44 +37,7 @@ public class PriceController {
 	@Autowired
 	private IPriceService priceService;
 	
-	@GetMapping("/prices2")
-	public String retrieveAllPrices2() {
-		return "Hola";
-	}
-		
 	
-	@GetMapping("/prices")
-	public List<Price> retrieveAllPrices() {
-		return priceRepository.findAll();
-	}
-	
-	
-	@GetMapping("/test")
-	public String retrievePrice(@RequestParam("datetime") String dateTime, @RequestParam("productid") int productId, @RequestParam("brandid") int brandId) {
-		return dateTime + productId + brandId;
-	}
-	
-/*	
-	@GetMapping("/query")
-	public List<Double> query(Model model) {
-		
-		var prices = (List<Double>) priceService.getPrice();
-		
-
-		/*
-				
-				select priority, price 
-				from price
-				where brand_id = 1
-				and product_id = 35455
-				and parsedatetime( '20200614000000', 'yyyyMMddHHmmss') between start_date and end_date 
-				order by priority desc
-			*/	/*				
-		
-		return prices;
-
-	}
-*/	
 	@GetMapping("/price")
 	public Map<String, String> price(Model model, @RequestParam("datetime") String dateTime, @RequestParam("productid") int productId, @RequestParam("brandid") int brandId) {
 		
